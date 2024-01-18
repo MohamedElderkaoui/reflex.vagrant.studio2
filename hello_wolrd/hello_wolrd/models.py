@@ -329,31 +329,28 @@ def  author_form():
         rx.TextInput(),
         rx.Button("Submit", on_click=lambda _: authors().add_author(rx.get("title"), rx.get("email"), rx.get("birth_date"), rx.get("died_date"))),
     )
-def author_form_update(self,id):
+def author_form_update(self, id):
     with rx.session.begin(subtransactions=True) as session:
-        db = session.query(
-            Author
-        ).filter(Author.id == id).first()
+        db = session.query(Author).filter(Author.id == id).first()
         return rx.vstack(
             rx.Heading("Update Author"),
             rx.Heading("Authorname"),
-            rx.TextInput().
-            set_value(db.author.
-                      Authorname),
-            rx.
-            Heading("email"),
-            rx.TextInput().
-            set_value(db.author.
-                      email),
+            rx.TextInput().set_value(db.author.Authorname),
+            rx.Heading("email"),
+            rx.TextInput().set_value(db.author.email),
             rx.Heading("birth_date"),
-            rx.TextInput().
-            set_value(db.author.
-                      birth_date),
+            rx.TextInput().set_value(db.author.birth_date),
             rx.Heading("died_date"),
-            rx.TextInput().
-            set_value(db.author.
-                      died_date),
-            rx.Button("Submit", on_click=lambda _: authors().update_author(rx.get("title"), rx.get("email"), rx.get("birth_date"), rx.get("died_date"))),
+            rx.TextInput().set_value(db.author.died_date),
+            rx.Button(
+                "Submit",
+                on_click=lambda _: authors().update_author(
+                    rx.get("title"),
+                    rx.get("email"),
+                    rx.get("birth_date"),
+                    rx.get("died_date")
+                )
+            )
         )
 def book_form_update(self,id):
     with rx.session.begin(subtransactions=True) as session:
@@ -419,12 +416,28 @@ async def books(action, book_id):
         )
     else:
         return book().show_books()
+@app.route("/books/")
+def page_bo(self):
+    return rx.page(
+        rx.
+        Button("Add Book", on_click=lambda _: book_form().show()),
+        rx.
+        Button("Remove Book", on_click=lambda _: book_form().show()),
+    )
 #-------------------------------AUTHORS-------------------------------------
 
 @app.route("/authors/<string:action>/<string:author_id>")
 async def authors(action, author_id):
     if action == "edit":
-        return author_form_update(author_id)
+        return rx.page(
+            author_form_update(author_id),
+        )
+    elif action == "update":
+        with rx.session.begin(subtransactions=True) as session:
+            return rx.page(
+                author_form_update(author_id),
+                rx.Button("Update", on_click=lambda _: authors().update_author(rx.get("title"), rx.get("email"), rx.get("birth_date"), rx.get("died_date"))),
+            )
     elif action == "delete":
         return rx.page(
             rx.vstack(
