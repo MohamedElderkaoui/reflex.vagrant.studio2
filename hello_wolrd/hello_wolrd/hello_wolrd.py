@@ -13,4 +13,6 @@ class State(rx.State):
 
 # Create the app.
 app = rx.App(style=styles.base_style)
+# export app to model.py
+
 # 
