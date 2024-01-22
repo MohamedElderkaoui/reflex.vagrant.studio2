@@ -1,6 +1,8 @@
 """The table_book page."""
+import datetime
+import typing
 from hello_wolrd.templates import template
-from hello_wolrd.hello_wolrd.hello_wolrd import *
+from hello_wolrd.hello_wolrd.hello_wolrd import query, AuthorForm, Author
 import reflex as rx
 
 class State(rx.State):
@@ -112,8 +114,23 @@ class UpdateAuthorform(rx.Form):
             session.add(author)
             session.commit()
             return [author]
-        app.mount("/", app.router)
-        app.mount("/", form)
-        app.include_router(api_router)
 
-@
+
+def authors_bp() -> rx.Component:
+    @rx.route("/authors")
+    class AuthorsView (rx.View):
+        async def on_get(_self) -> typing.Awaitable[typing.Any
+                                                    ]:
+            with rx.db.engine.begin() as conn :
+                authors = await Author.select().gino.load(
+                    "id", "name" , "email" , "birth_date" ,
+                    "death_date").all()
+                return {"authors": authors}
+            return rx.page(
+                "authors/index.html" ,
+                title="Authors" ,
+                data={"authors": authors})
+            add_author_view = AddAuthorform.as_view()
+            return rx.redirect(add_author_view)
+            
+rx.App.use("/authors" , authors_bp)
