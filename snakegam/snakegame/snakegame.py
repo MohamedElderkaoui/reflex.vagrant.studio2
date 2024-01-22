@@ -5,8 +5,6 @@ from typing import Any, Dict, List
 import reflex as rx
 from reflex.utils.imports import ImportDict, ImportVar
 
-from hello_wolrd.hello_wolrd import styles
-
 N = 19  # There is a N*N grid for ground of snake
 COLOR_NONE = "#EEEEEE"
 COLOR_BODY = "#008800"
@@ -346,4 +344,3 @@ def index():
 
 app = rx.App()
 app.add_page(index, title="snake game")
-app = rx.App(style=styles.base_style)

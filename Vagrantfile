@@ -1,6 +1,6 @@
 Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/bionic64"  
-  config.vm.network :forwarded_port, host: 8080, guest: 80
+  config.vm.network :forwarded_port, host: 3000, guest: 80
   config.vm.network :forwarded_port, host: 5432, guest: 5432
    config.vm.synced_folder './', '/vagrant'
 
@@ -26,12 +26,13 @@ Vagrant.configure("2") do |config|
 
     # Install project dependencies
     pip install -r /vagrant/requirements.txt
-    reflex init 
+    cd snakegam 
     # Install sqlite
     sudo apt-get install -y sqlite3
-    cd ./hello_wolrd/hello_wolrd
+    cd ./
     reflex dn init
     reflex db makemigrations --message 'all2' 
+    reflex rum
     
     
   SHELL
