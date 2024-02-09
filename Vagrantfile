@@ -3,7 +3,7 @@ Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/bionic64"  
 
   # Reenvío de puertos para acceder a la máquina virtual desde el host
-  config.vm.network :forwarded_port, host: 3000, guest: 80
+  config.vm.network :forwarded_port, host: 3000, guest: 3000
   config.vm.network :forwarded_port, host: 5432, guest: 5432
 
   # Carpeta sincronizada para compartir archivos entre el host y la máquina virtual
@@ -44,10 +44,13 @@ Vagrant.configure("2") do |config|
     cd snakegam
 
     # Inicializa la base de datos con Django
-    reflex dn init
+    reflex db init
     # Crea las migraciones de la base de datos
     reflex db makemigrations --message 'all2' 
     # Ejecuta las migraciones y arranca el servidor
-    reflex rum
+    reflex run
+    
   SHELL
+
+
 end

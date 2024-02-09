@@ -25,6 +25,42 @@ export function Button_c1338eddb128286e819b0a8e750e7fd7 () {
   )
 }
 
+export function Simplegrid_337a16b6083803a88873f4e5448336ab () {
+  const state__state = useContext(StateContexts.state__state)
+
+
+  return (
+    <SimpleGrid columns={[19]}>
+  {state__state.cells.map((color, idx) => (
+  <Box key={idx} sx={{"bg": color, "width": "1em", "height": "1em", "border": "1px solid white"}}/>
+))}
+</SimpleGrid>
+  )
+}
+
+export function Switch_8121c8ebdffa1aedc7d8b82ff80783aa () {
+  const [addEvents, connectError] = useContext(EventLoopContext);
+  const state__state = useContext(StateContexts.state__state)
+
+  const on_change_6f4004c6fbf89baebd209745225b5e6f = useCallback((_e0) => addEvents([Event("state.state.flip_switch", {start:_e0.target.checked})], (_e0), {}), [addEvents, Event])
+
+  return (
+    <Switch isChecked={state__state.running} onChange={on_change_6f4004c6fbf89baebd209745225b5e6f} value={true}/>
+  )
+}
+
+export function Button_6ff1dbf4fa877fdefa9f4c9323db7a0f () {
+  const [addEvents, connectError] = useContext(EventLoopContext);
+
+  const on_click_3006791a0bff96622d160fe227403b7b = useCallback((_e) => addEvents([Event("state.state.play", {})], (_e), {}), [addEvents, Event])
+
+  return (
+    <Button colorScheme={`green`} onClick={on_click_3006791a0bff96622d160fe227403b7b} sx={{"borderRadius": "1em"}}>
+  {`RUN`}
+</Button>
+  )
+}
+
 export function Fragment_22553b2d485e03c3c7040cf7a54e955a () {
   const state__state = useContext(StateContexts.state__state)
 
@@ -41,6 +77,41 @@ export function Fragment_22553b2d485e03c3c7040cf7a54e955a () {
   <Fragment/>
 )}
 </Fragment>
+  )
+}
+
+export function Button_6f70c0775d94e09d26cd091a459cd38a () {
+  const [addEvents, connectError] = useContext(EventLoopContext);
+
+  const on_click_098f821a8f37366cddc410c655327c40 = useCallback((_e) => addEvents([Event("state.state.arrow_up", {})], (_e), {}), [addEvents, Event])
+
+  return (
+    <Button colorScheme={`red`} onClick={on_click_098f821a8f37366cddc410c655327c40} sx={{"borderRadius": "1em", "fontSize": "2em"}}>
+  {`￪`}
+</Button>
+  )
+}
+
+export function Heading_eb7c719f13eed5ebe4d29ba7354a214d () {
+  const state__state = useContext(StateContexts.state__state)
+
+
+  return (
+    <Heading sx={{"fontSize": "2em"}}>
+  {state__state.magic}
+</Heading>
+  )
+}
+
+export function Button_b6d19c7a273d2e4029a13dd4ee487a1c () {
+  const [addEvents, connectError] = useContext(EventLoopContext);
+
+  const on_click_9e6346a84c1f11d809a690aeb07dcaaa = useCallback((_e) => addEvents([Event("state.state.arrow_right", {})], (_e), {}), [addEvents, Event])
+
+  return (
+    <Button colorScheme={`red`} onClick={on_click_9e6346a84c1f11d809a690aeb07dcaaa} sx={{"borderRadius": "1em", "fontSize": "2em"}}>
+  {`￫`}
+</Button>
   )
 }
 
@@ -67,40 +138,6 @@ export function Button_933923be7ad15be929f2461fc1735e27 () {
   )
 }
 
-export function Switch_8121c8ebdffa1aedc7d8b82ff80783aa () {
-  const state__state = useContext(StateContexts.state__state)
-  const [addEvents, connectError] = useContext(EventLoopContext);
-
-  const on_change_6f4004c6fbf89baebd209745225b5e6f = useCallback((_e0) => addEvents([Event("state.state.flip_switch", {start:_e0.target.checked})], (_e0), {}), [addEvents, Event])
-
-  return (
-    <Switch isChecked={state__state.running} onChange={on_change_6f4004c6fbf89baebd209745225b5e6f} value={true}/>
-  )
-}
-
-export function Heading_eb7c719f13eed5ebe4d29ba7354a214d () {
-  const state__state = useContext(StateContexts.state__state)
-
-
-  return (
-    <Heading sx={{"fontSize": "2em"}}>
-  {state__state.magic}
-</Heading>
-  )
-}
-
-export function Button_6ff1dbf4fa877fdefa9f4c9323db7a0f () {
-  const [addEvents, connectError] = useContext(EventLoopContext);
-
-  const on_click_3006791a0bff96622d160fe227403b7b = useCallback((_e) => addEvents([Event("state.state.play", {})], (_e), {}), [addEvents, Event])
-
-  return (
-    <Button colorScheme={`green`} onClick={on_click_3006791a0bff96622d160fe227403b7b} sx={{"borderRadius": "1em"}}>
-  {`RUN`}
-</Button>
-  )
-}
-
 export function Button_6bd10e2131a8d5501a1db8d4eccba867 () {
   const [addEvents, connectError] = useContext(EventLoopContext);
 
@@ -121,43 +158,6 @@ export function Heading_1422380c8efbc1e326e90f1184d66e72 () {
     <Heading sx={{"fontSize": "2em"}}>
   {state__state.rate}
 </Heading>
-  )
-}
-
-export function Button_b6d19c7a273d2e4029a13dd4ee487a1c () {
-  const [addEvents, connectError] = useContext(EventLoopContext);
-
-  const on_click_9e6346a84c1f11d809a690aeb07dcaaa = useCallback((_e) => addEvents([Event("state.state.arrow_right", {})], (_e), {}), [addEvents, Event])
-
-  return (
-    <Button colorScheme={`red`} onClick={on_click_9e6346a84c1f11d809a690aeb07dcaaa} sx={{"borderRadius": "1em", "fontSize": "2em"}}>
-  {`￫`}
-</Button>
-  )
-}
-
-export function Simplegrid_8d4963050014c76d58dde5eb79d99fd0 () {
-  const state__state = useContext(StateContexts.state__state)
-
-
-  return (
-    <SimpleGrid columns={[19]}>
-  {state__state.cells.map((color, idx) => (
-  <Box key={idx} sx={{"bg": color, "width": "1em", "height": "1em", "border": "1px solid white"}}/>
-))}
-</SimpleGrid>
-  )
-}
-
-export function Button_6f70c0775d94e09d26cd091a459cd38a () {
-  const [addEvents, connectError] = useContext(EventLoopContext);
-
-  const on_click_098f821a8f37366cddc410c655327c40 = useCallback((_e) => addEvents([Event("state.state.arrow_up", {})], (_e), {}), [addEvents, Event])
-
-  return (
-    <Button colorScheme={`red`} onClick={on_click_098f821a8f37366cddc410c655327c40} sx={{"borderRadius": "1em", "fontSize": "2em"}}>
-  {`￪`}
-</Button>
   )
 }
 
@@ -205,7 +205,7 @@ useEffect(() => {
   <Heading_eb7c719f13eed5ebe4d29ba7354a214d/>
 </VStack>
 </HStack>
-  <Simplegrid_8d4963050014c76d58dde5eb79d99fd0/>
+  <Simplegrid_337a16b6083803a88873f4e5448336ab/>
   <Fragment_22553b2d485e03c3c7040cf7a54e955a/>
   <HStack>
   
